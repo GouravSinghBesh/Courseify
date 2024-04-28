@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FaArrowRight } from "react-icons/fa";
 import HighlightText from "../components/core/Homepage/HighlightText"
 import CtaButton from "../components/core/Homepage/Button"
@@ -12,10 +12,11 @@ import Footer from '../components/common/Footer';
 
 
 const Home = () => {
+    
     return (
         <div>
             {/* section -1 */}
-            <div className='w-11/12 max-w-maxContent mx-auto relative flex flex-col justify-between items-center text-white bg-richblue-900'>
+            <div className='w-11/12 max-w-maxContent mx-auto relative flex flex-col justify-between items-center text-white bg-richblack-900'>
                 <Link to={"/signup"}>
                     <div className='group p-1 mt-16 rounded-full  mx-auto bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95'>
                         <div className='flex gap-2 items-center rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
