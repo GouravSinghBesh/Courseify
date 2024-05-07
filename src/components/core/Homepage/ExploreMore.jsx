@@ -18,12 +18,12 @@ const ExploreMore = () => {
     <div className='flex flex-col gap-8 '>
         {/* heading */}
         <div >
-            <p className='text-4xl font-bold my-10 text-center'>Unlock the <HighlightText text={"Power Of Code"}/></p>
+            <p className='text-4xl font-bold  text-center'>Unlock the <HighlightText text={"Power Of Code"}/></p>
             <p className='text-richblack-300 mt-1 text-lg font-semibold text-center'>Learn to Build Anything You Can Imagine</p>
         </div>
 
         {/* tabs */}
-        <div className='lg:flex gap-5 p-1 -mt-5 items-center bg-richblack-800 text-richblack-200 mx-auto w-max rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)] '>
+        <div className='lg:flex gap-5 p-1 mt-5 items-center bg-richblack-800 text-richblack-200 mx-auto w-max rounded-full font-medium drop-shadow-[0_1.5px_rgba(255,255,255,0.25)] '>
             {HomePageExplore.map((element,index)=>(
                 <div key={index} className={`text-[16px] flex gap-2 items-center ${currentTab === element.tag ? "bg-richblack-900 text-richblack-5 font-medium" : "text-richblack-200"} px-7 py-[7px] rounded-full cursor-pointer transition-all duration-200 hover:bg-richblack-900 hover:text-richblack-5`} onClick={()=>setMyTab(element)}>{element.tag}</div>
             ))}
