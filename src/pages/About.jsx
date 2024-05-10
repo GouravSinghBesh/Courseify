@@ -14,7 +14,7 @@ const About = () => {
     return (
         <div className='mx-auto mt-[100px] text-white '>
             {/* section 1 */}
-            <section className='w-11/12'>
+            <section className='w-11/12 mx-auto'>
                 <div>
                     <header className='mx-auto w-[80%]'>
                         <p className='text-white font-bold text-[40px] text-center'>Driving Innovation in Online Education for a </p>
@@ -30,12 +30,12 @@ const About = () => {
             </section>
 
             {/* section-2 */}
-            <section className='my-32 w-11/12 '>
+            <section className='my-32 w-11/12 mx-auto'>
                     <Quote />
             </section>
 
             {/* section-3 */}
-            <section className='w-11/12'>
+            <section className='w-11/12 mx-auto'>
                 <div>
                     {/* funding story wala div */}
                     <div className='flex gap-4 justify-evenly text-richblack-200'>
@@ -69,7 +69,7 @@ const About = () => {
             </section>
 
             {/* section-5 */}
-            <section className='w-11/12'>
+            <section className='w-11/12 mx-auto'>
                 <LearningGrid/>
                 <ContactFormSection/>
             </section>

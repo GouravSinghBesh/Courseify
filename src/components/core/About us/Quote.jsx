@@ -14,7 +14,7 @@ const Quote = () => {
       , and community to create an 
       <span  className='text-brown-500'>
       {" "}
-        unparalleled educational experience.<img src={icon1} alt="icon1" className='absolute left-[58%] top-[65%] rotate-180' />
+        unparalleled educational experience.<img src={icon1} alt="icon1" className='absolute left-[75%] top-[66%] rotate-180' />
       </span>
     </div>
   )

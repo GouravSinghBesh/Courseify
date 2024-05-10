@@ -66,7 +66,7 @@ exports.signUp = async(req,res)=>{
     accountType
     } = req.body;
 
-    if(!firstName || !lastName || !email || !password || !confirmPassword || !contactNumber){
+    if(!firstName || !lastName || !email || !password || !confirmPassword ){
         return res.status(403).json({
             success : false,
             message  : "all fields are mandatory,Please fill all the details"
@@ -114,7 +114,7 @@ exports.signUp = async(req,res)=>{
     //create the additional profile for user
     const profileDetails = await Profile.create({
         gender : null,
-        contactNumber : null,
+        contactNumber : contactNumber,
         dateOfBirth : null,
         about : null
     })
