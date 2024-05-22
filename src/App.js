@@ -12,6 +12,10 @@ import ForgotPassword from "./pages/ForgotPassword";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import UpdatePassword from "./pages/UpdatePassword";
 import Error from "./pages/Error";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/core/auth/PrivateRoute";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Settings from "./components/core/Dashboard/Settings";
 
 function App() {
   return (
@@ -38,7 +42,6 @@ function App() {
           </OpenRoute>
         } />
 
-        <Route path="dashboard/my-profile" element={<MyProfile />} />
 
         <Route path="signup" element={
           <OpenRoute>
@@ -52,17 +55,25 @@ function App() {
           </OpenRoute>
         } />
 
-        <Route path="about" element={
-          <OpenRoute>
-            <About />
-          </OpenRoute>
-        } />
+        <Route path="about" element={<About />} />
 
         <Route path="contact" element={
-          <OpenRoute>
+          
             <ContactUs />
-          </OpenRoute>
+         
         } />
+
+
+        <Route element={
+          <PrivateRoute>
+            <Dashboard/>
+          </PrivateRoute>
+        }>
+          <Route path="/dashboard/my-profile" element={<MyProfile/>}></Route>
+          <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses/>}></Route>
+          <Route path="/dashboard/Settings" element={<Settings/>}></Route>
+
+        </Route>
 
 <Route path="*" element={<Error />} />
 

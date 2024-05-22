@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { IoCart } from "react-icons/io5";
 import { apiconnector } from '../../services/apiconnector';
 import { categories } from '../../services/apis';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProfileDropDown from '../core/auth/ProfileDropDown';
 const subLinks = [
     {
@@ -24,10 +24,10 @@ const subLinks = [
 
 
 const Navbar = () => {
-    const { token } = useSelector((state)=>state.auth);
-    const { user } = useSelector((state)=>state.profile);
-    const { totalItems } = useSelector((state)=>state.cart);
-    const [subLinks,setSublinks] = useState([]);
+    const { token } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.profile);
+    const { totalItems } = useSelector((state) => state.cart);
+    // const [subLinks, setSublinks] = useState([]);
     const location = useLocation();
 
     // const fetchSublinks = async()=>{
@@ -38,13 +38,13 @@ const Navbar = () => {
     //     } catch (error) {
     //         console.log("could not fetch categories data")
     //     }
-       
+
     // }
 
     // useEffect(() => {
     //     fetchSublinks();
     // }, [])
-    
+
 
     const matchRoute = (path) => {
         return (matchPath(path, location.pathname))
@@ -52,7 +52,7 @@ const Navbar = () => {
 
     return (
         <div className='border-b-[1px] border-b-richblack-700 h-14 flex items-center '>
-            <div className='relative w-11/12 max-w-maxContent flex justify-between items-center text-richblack-5'>
+            <div className=' w-11/12 max-w-maxContent flex justify-between items-center text-richblack-5'>
                 {/* logo */}
                 <Link to="/">
                     <img src={logo} alt="Logo" height={42} width={160} />
@@ -65,16 +65,18 @@ const Navbar = () => {
                             NavbarLinks.map((navlinks, index) => (
                                 <li key={index} >
                                     {navlinks.title === "Catalog" ?
-                                        (<div className='flex gap-2 items-center  group'>
+                                        (<div className='flex gap-2 items-center relative  group'>
                                             <p>{navlinks.title}</p>
                                             <MdOutlineKeyboardArrowDown />
                                             {/* TODO:hover effect */}
-                                            <div className='invisible absolute bg-richblack-5 flex flex-col text-richblack-900  lg:w-[300px] group-hover:visible'>
-                                                <div></div>
+                                            <div className='invisible absolute bg-richblack-5 flex flex-col rounded-md p-4 text-richblack-900 left-[50%] translate-x-[-50%] translate-y-[35%] top-[50%] lg:w-[300px]  opacity-0 transition-all duration-200     group-hover:visible group-hover:opacity-100 z-20'>
+
+                                                <div className='absolute left-[50%] top-0 translate-x-[80%] translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5'>
+                                                </div>
                                                 {
                                                     subLinks.length ?
                                                         (subLinks.map((links, index) => (
-                                                            <Link to={links.link} key={index}>
+                                                            <Link to={`${links.link}`} key={index}>
                                                                 <p>{links.title}</p>
                                                             </Link>
                                                         ))) :
@@ -122,7 +124,7 @@ const Navbar = () => {
                     }
                     {
                         token !== null && (
-                            <ProfileDropDown/>
+                            <ProfileDropDown />
                         )
                     }
                 </div>

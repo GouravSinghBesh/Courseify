@@ -1,3 +1,4 @@
+// const { useSelector } = require("react-redux");
 const { findById } = require("../models/Courses");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
@@ -5,6 +6,7 @@ const {uploadImageToCloudinary} = require("../utils/imageUploader");
 
 exports.updateProfile = async(req,res)=>{
     try {
+        console.log("inside updateProfile")
         const{dateOfBirth = "",about = "",contactNumber,gender} = req.body;
 
         if(!contactNumber || !gender ){
@@ -13,11 +15,16 @@ exports.updateProfile = async(req,res)=>{
                 message : "all fields are required"
             })
         } 
-
+        // const {user} = useSelector((state)=>state.profile)
+        // const ProfileId = await User.findById(user.additionDetails);
         const id = req.user.id;
+        console.log("id : ",id);
         const userDetails = await findById(id);
+        console.log("userDetails : ",userDetails);
         const ProfileId = await findById(userDetails.additionDetails) ;
+        console.log(" :profileid ",ProfileId);
         const ProfileDetails = await findById(ProfileId);
+        console.log("profileDetails : ",ProfileDetails);
 
         ProfileDetails.dateOfBirth = dateOfBirth;
         ProfileDetails.about = about;
@@ -35,6 +42,7 @@ exports.updateProfile = async(req,res)=>{
     } catch (error) {
         return res.status(500).json({
             success:false,
+            message : "Profile is not updated",
             error:error.message,
         });
     }

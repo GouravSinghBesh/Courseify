@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import {setuser} from "../../slices/profileSlice"
+import {setUser} from "../../slices/profileSlice"
 import { setLoading ,setToken} from "../../slices/authSlice";
 import { apiconnector } from "../apiconnector";
 import axios from "axios";
@@ -20,6 +20,7 @@ export function sendOtp(email,navigate){
         })
 
         console.log("sending otp response",response);
+        // console.log("token",)
         console.log(response.data.success);
 
         if(!response.data.success){
@@ -59,9 +60,9 @@ export function login(email,password,navigate){
 
             const userImage = response.data?.user?.image ? 
             response.data.user.image :
-             `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+             `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName}${response.data.user.lastName}`
              console.log(userImage);
-            // dispatch(setuser({...response.data.user, image : userImage}))
+            dispatch(setUser({...response.data.user, image : userImage}))
 
             localStorage.setItem("token",JSON.stringify(response.data.token))
             localStorage.setItem("user",JSON.stringify(response.data.user))
@@ -76,20 +77,22 @@ export function login(email,password,navigate){
     }
 }
 
-export function signup(firstName,lastName,email,password,confirmPassword,accountType,otp,navigate){
+export function signup(firstName,lastName,email,password,confirmPassword,otp,accountType,navigate){
     return async(dispatch)=>{
         const toastId = toast.loading("...loading");
         dispatch(setLoading(true));
         try {
-            const response = await axios.post(SIGNUP_API,
+            const response = await apiconnector("POST",SIGNUP_API,
             {
-                accountType :accountType,
-                firstName : firstName,
-                lastName : lastName,
-                email : email,
-                password : password,
-                confirmPassword : confirmPassword,
-                otp : otp})
+                firstName,
+                lastName,
+                email,
+                password,
+                confirmPassword,
+                otp,
+                accountType,
+            }
+            )
             console.log("response of signup api",response)
 
             if(!response.data.success){
@@ -100,7 +103,7 @@ export function signup(firstName,lastName,email,password,confirmPassword,account
             navigate("/login");
         } catch (error) {
             toast.error("error while signup")
-            console.log(error);
+            console.log("error while signUp",error);
             navigate("/signup")
         }
         dispatch(setLoading(false));
@@ -111,7 +114,7 @@ export function signup(firstName,lastName,email,password,confirmPassword,account
 export function logout(navigate){
     return async(dispatch)=>{
         dispatch(setToken(null));
-        dispatch(setuser(null));
+        dispatch(setUser(null));
         // dispatch(resetCart());
         localStorage.removeItem("token");
         localStorage.removeItem("user");

@@ -13,11 +13,12 @@ import axios from "axios";
 //     })
 // }
 
-export const apiconnector = (method,url,bodyData)=>{
+export const apiconnector = (method,url,bodyData,headers)=>{
     return axios({
         method : `${method}`,
         url : `${url}`,
-        data : bodyData
+        data : bodyData ? bodyData : null,
+        headers : headers ? headers : null
     })
 }
 
