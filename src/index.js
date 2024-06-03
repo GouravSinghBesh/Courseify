@@ -7,19 +7,25 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import rootReducer from "./reducer";
+import { CookiesProvider } from "react-cookie";
 
 const store = configureStore({
-  reducer : rootReducer,
+  reducer: rootReducer,
 })
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+
   <Provider store={store}>
     <BrowserRouter>
-      <App />
-      <Toaster/>
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
+      <Toaster />
     </BrowserRouter>
 
   </Provider>
+
+
 );

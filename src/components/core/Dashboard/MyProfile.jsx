@@ -11,7 +11,7 @@ const MyProfile = () => {
 
   return (
     <div className='text-white'>
-      <h1 className='text-richblack-5 font-medium text-3xl mb-14'>My Profile</h1>
+      <h1 className='text-richblack-5 font-medium text-3xl mb-14 '>My Profile</h1>
 
       {/* section-1 */}
       <div className='flex justify-between items-center bg-richblack-800 border-[1px] border-richblack-700 rounded-md p-8 px-12 gap-x-16'>

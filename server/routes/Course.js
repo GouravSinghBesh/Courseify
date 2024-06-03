@@ -31,7 +31,7 @@ router.get("/getAllRating",getAllRating);
 
 //                      category route (only for admin)
 router.post("/createCategory",auth,isAdmin,createCategory);
-router.get("/showAllCategory",showAllCategory);
+router.get("/showAllCategories",showAllCategory);
 router.get("/categoryPageDetail",categoryPageDetails);
 
 module.exports = router;

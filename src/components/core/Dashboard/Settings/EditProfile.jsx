@@ -25,8 +25,8 @@ const EditProfile = () => {
   return (
     <>
         <form className=' text-white' onSubmit={handleSubmit(submitProfileForm)}>
-            <div>
-                <h2>Profile Information</h2>
+            <div className='my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12'>
+                <h2 className='text-lg text-richblack-5 font-semibold'>Profile Information</h2>
                 <div className='flex flex-col gap-5 lg:flex-row'>
                     {/* firstName */}
                     <div className='flex flex-col gap-2 lg:w-[48%]'>

@@ -8,7 +8,7 @@ import axios from "axios";
 //         method : `${method}`,
 //         url : `${url}`,
 //         body : bodyData ? bodyData : null,
-//         headers : headers ? headers : null,
+//         headers : headers ? headers : null,\
 //         params : params ? params : null
 //     })
 // }

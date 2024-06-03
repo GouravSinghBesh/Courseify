@@ -5,8 +5,11 @@ const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 const mailSender = require("../utils/mailSender");
 const { passwordUpdate } = require("../mail/templates/passwordUpdate");
-const { response } = require("express");
+// const { response } = require("express");
 const Profile = require("../models/Profile");
+// const { useCookies } = require("react-cookie");
+
+// const [cookies,setCookies] = useCookies(["user"]);
 
 exports.sendOTP = async (req, res) => {
     try {
@@ -174,12 +177,18 @@ exports.login = async (req, res) => {
                 id: user._id,
                 accountType: user.accountType
             }
-            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" });
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "24h" });
             user.token = token;
             user.password = undefined;//why?
 
+
+            // setCookies("user",user);
+            // return res.status(200).json({
+            //     success : true,
+            //     message : "User login successfully"
+            // })
             const options = {
-                expiresIn: 3 * 24 * 60 * 60 * 1000,
+                expiresIn: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true
             }
 

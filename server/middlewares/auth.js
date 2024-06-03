@@ -5,6 +5,7 @@ require("dotenv").config();
 
 exports.auth = (req, res, next) => {
     try {
+        console.log("fetching token from header")
         const token = req.body.token || req.cookies.token || req.header("Authorisation").replace("Bearer", "");
 
         if (!token) {
@@ -13,6 +14,7 @@ exports.auth = (req, res, next) => {
                 message: "token is missing"
             })
         }
+        console.log("checking token error")
         try {
            const decode = jwt.verify(token,process.env.JWT_SECRET) ;
            console.log(decode);

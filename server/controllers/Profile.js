@@ -1,4 +1,5 @@
 // const { useSelector } = require("react-redux");
+const { useSelector } = require("react-redux");
 const { findById } = require("../models/Courses");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
@@ -98,12 +99,22 @@ exports.getUserAllDetails = async(req,res)=>{
 
 exports.updateDisplayPicture = async(req,res)=>{
     try {
-        const userId = req.user.id;
+        // const userId = req.user.id;
+        console.log("inside server")
+        const {user} = useSelector((state)=>state.profile)
         const displayPicture = req.files.displayPicture;
 
-        const image = await uploadImageToCloudinary(displayPicture,process.env.FOLDER_NAME,1000,1000);
-
-        const updatedProfile = await User.findByIdAndUpdate({_id : userId},{$push : image.secure_url},{new : true});
+        const image = await uploadImageToCloudinary(
+            displayPicture,
+            process.env.FOLDER_NAME,
+            1000,1000
+        );
+        console.log("find user and updating profile picture")
+        const updatedProfile = await User.findByIdAndUpdate(
+            {_id : user._id},
+            {image: image.secure_url},
+            {new : true}
+        );
 
         return res.status(200).json({
             success : true,
